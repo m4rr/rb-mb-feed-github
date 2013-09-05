@@ -412,14 +412,14 @@
 	
 		
 		
-	fromLabel = [[UILabel alloc] initWithFrame:CGRectMake(30.0, 8.0, 200.0, 18.0)];
+	fromLabel = [[UILabel alloc] initWithFrame:CGRectMake(30.0, 8.0, 220.0, 18.0)];
 	fromLabel.font = chevinMedium;
 	fromLabel.textColor = [UIColor darkGrayColor];
 	fromLabel.backgroundColor = [UIColor clearColor];
 	[cell.contentView addSubview:fromLabel];
 	
 	
-	timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(240.0, 8.0, 70.0, 18.0)];
+	timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(250.0, 8.0, 63.0, 18.0)];
 	timeLabel.font = chevinMediumSmaller;
 	timeLabel.textColor = [UIColor lightGrayColor];
 	timeLabel.textAlignment = NSTextAlignmentRight;
@@ -427,14 +427,14 @@
 	[cell.contentView addSubview:timeLabel];
 	
 	
-	subjectLabel = [[UILabel alloc] initWithFrame:CGRectMake(30.0, 26.0, 220.0, 18.0)];
+	subjectLabel = [[UILabel alloc] initWithFrame:CGRectMake(30.0, 26.0, 230.0, 18.0)];
 	subjectLabel.font = chevinBold;
 	subjectLabel.textColor = [UIColor blackColor];
 	subjectLabel.backgroundColor = [UIColor clearColor];
 	[cell.contentView addSubview:subjectLabel];
 	
 	
-	messageBodyLabel = [[UILabel alloc] initWithFrame:CGRectMake(30.0, 46.0, 220.0, 36.0)];
+	messageBodyLabel = [[UILabel alloc] initWithFrame:CGRectMake(30.0, 46.0, 230.0, 36.0)];
 	messageBodyLabel.font = chevinMedium;
 	messageBodyLabel.textColor = [UIColor lightGrayColor];
 	messageBodyLabel.numberOfLines = 2;
@@ -486,12 +486,13 @@
 	[cell.contentView addSubview:discl];
 		
 	
+
 	
 	NSString *fullFrom = [[localEmails objectAtIndex:[indexPath row]] objectForKey:@"from"];
 	NSError  *error  = NULL;
 	
 	NSRegularExpression *regex = [NSRegularExpression
-								  regularExpressionWithPattern:@"(\\w[-._\\w]*\\w@\\w[-._\\w]*\\w\\.\\w{2,5}){1,1}|([\\w ]+)"
+								  regularExpressionWithPattern:@"(\\w[-._\\w]*\\w@\\w[-._\\w]*\\w\\.\\w{2,5}){1,1}|([\\w .]+)[^ <]"
 								  options:0
 								  error:&error];
 	
@@ -502,8 +503,26 @@
 	NSString *shortFrom = [fullFrom substringWithRange:range];
 		
 	fromLabel.text = shortFrom;
+	NSMutableString *fromLabelContent = [NSMutableString stringWithString:shortFrom];
 	
 	
+	
+	NSArray *commaSeparated = [[[localEmails objectAtIndex:[indexPath row]] objectForKey:@"to"] componentsSeparatedByString:@", "];
+	
+	if ([commaSeparated count] == 1) {
+		[fromLabelContent appendString:@" to Me"];
+//		[fromLabelContent appendString:[[commaSeparated objectAtIndex:0] substringWithRange:range]];
+	} else {
+		[fromLabelContent appendFormat:@" to %d others", [commaSeparated count]];
+	}
+	
+	
+
+//	NSLog(@"commaSeparated - %@", commaSeparated);
+	
+	
+	
+	fromLabel.text = fromLabelContent;
 	
 	timeLabel.text = [self userVisibleDateTimeStringForRFC3339DateTimeString:[[localEmails objectAtIndex:[indexPath row]] objectForKey:@"received_at"]];
 	subjectLabel.text = [NSString stringWithFormat:@"%@", [[localEmails objectAtIndex:[indexPath row]] objectForKey:@"subject"]];
@@ -569,11 +588,12 @@
 	}
 	
 	
-//	NSLog(@"from - %@", [NSString stringWithFormat:@"%@", [[localEmails objectAtIndex:[indexPath row]] objectForKey:@"from"]]);
+//	NSLog(@"from - %@", [NSString stringWithFormat:@"%@", [[localEmails objectAtIndex:[indexPath row]] objectForKey:@"to"]]);
 	
 	
 	
 	
+
 	
 	
 	
