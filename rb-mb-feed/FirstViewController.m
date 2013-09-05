@@ -11,35 +11,23 @@
 
 @interface FirstViewController () <MCSwipeTableViewCellDelegate, UISearchBarDelegate>
 
-@property (nonatomic, assign) NSUInteger nbItems;
-
 @end
-
-
 
 @implementation FirstViewController
 
 @synthesize tableView, tre01, tre02, tre03,
 			refreshControl, searchBar,
-			emails, emails_x, emails_v, pages, unreadEmails;
+			pages, emails, emails_x, emails_v, unreadEmails;
+
 
 
 #pragma mark - Action!
-
 
 - (void)tre01Fired // x
 {
 	[tre01 setSelected:YES];
 	[tre02 setSelected:NO];
 	[tre03 setSelected:NO];
-
-//	NSLog(@"emails_x - %@", emails_x);
-	
-//	[tableView beginUpdates];
-//	NSMutableArray *ipths = [[NSMutableArray alloc] init];
-//	for (int i = 0; i < [emails count]; i++) { [ipths addObject:[NSIndexPath indexPathForItem:i inSection:0]]; }
-//	[tableView deleteRowsAtIndexPaths:ipths withRowAnimation:UITableViewRowAnimationRight];
-//	[tableView endUpdates];
 
 	[tableView reloadData];
 }
@@ -52,7 +40,6 @@
 	[tre03 setSelected:NO];
 	
 	[tableView reloadData];
-	
 }
 
 
@@ -63,14 +50,12 @@
 	[tre03 setSelected:YES];
 	
 	[tableView reloadData];
-	
 }
 
 
 - (void)handleRefresh
 {
 	[self reloadDataFromNetwork:0];
-	
 }
 
 
@@ -219,8 +204,6 @@
 			[userVisibleDateFormatter setDateFormat:@"HH':'mm"];
 		}
 		
-		
-		
         userVisibleDateTimeString = [userVisibleDateFormatter stringFromDate:date];
     }
     return userVisibleDateTimeString;
@@ -236,7 +219,6 @@
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
 	if ([tre02 isSelected]) {
-//		[unreadEmails removeObjectForKey:[[emails objectAtIndex:[indexPath row]] objectForKey:@"id"]];
 		[unreadEmails setValue:@"read" forKey:[[emails objectAtIndex:[indexPath row]] objectForKey:@"id"]];
 	} else if ([tre01 isSelected]) {
 		[unreadEmails setValue:@"read" forKey:[[emails_x objectAtIndex:[indexPath row]] objectForKey:@"id"]];
@@ -245,15 +227,12 @@
 	}
 	
 	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	
 	return 85.0;
-
 }
 
 
@@ -271,11 +250,9 @@
 	
 	if ([localEmails count] == 0) {
 		return self.tableView.bounds.size.height;
-		NSLog(@"- %f", self.tableView.bounds.size.height);
 	}
 	
 	return 0;
-
 }
 
 
@@ -292,29 +269,19 @@
 	}
 	
 	if ([localEmails count] == 0) {
-
-		
 		UIView *noDataSplashView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,
 																		   self.tableView.bounds.size.width,
 																		   self.tableView.bounds.size.height)];
-		
 		UIImageView *noDataSplash = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 150, 150)];
-//		[noDataSplash setCenter:CGPointMake( self.tableView.bounds.size.width/2 , self.tableView.bounds.size.height/2 - 100 )];
 		[noDataSplash setImage:[UIImage imageNamed:@"splash"]];
-
 		
 		[noDataSplashView addSubview:noDataSplash];
 		[noDataSplash setCenter:CGPointMake( noDataSplashView.bounds.size.width/2 , noDataSplashView.bounds.size.height/2 - 100 )];
-		
-
-//	[[self view] addSubview:noDataSplash];
-		
+				
 		return noDataSplashView;
 	}
 	
 	return nil;
-	
-
 }
 
 
@@ -387,26 +354,7 @@
 #pragma mark - Table View requirements
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
 	return 1;
-	
-	NSArray *localEmails = nil;
-	
-	if ([tre02 isSelected]) {
-		localEmails = emails;
-	} else if ([tre01 isSelected]) {
-		localEmails = emails_x;
-	} else if ([tre03 isSelected]) {
-		localEmails = emails_v;
-	}
-
-	
-	if ([localEmails count] > 0) {
-		return 1;
-	} else {
-		return 0;
-	}
-	
 }
 
 
@@ -426,29 +374,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-//    static NSString *CellIdentifier = @"Cell";
+//	static NSString *CellIdentifier = @"Cell";
 #define CellIdentifier nil
+
 	
-//	static UILabel *fromLabel, *subjectLabel, *messageBodyLabel, *timeLabel;
 	UILabel *fromLabel, *subjectLabel, *messageBodyLabel, *timeLabel, *counter;
 	UIImageView *star, *discl, *unread;
 	
-	NSArray *localEmails = nil;
-	
-	if ([tre02 isSelected]) {
-		localEmails = emails;
-	} else if ([tre01 isSelected]) {
-		localEmails = emails_x;
-	} else if ([tre03 isSelected]) {
-		localEmails = emails_v;
-	}
-
-
-	
-//    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-	MCSwipeTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
-		
+			
 //	UIFont *chevinLight = [UIFont fontWithName:@"ChevinCyrillic-Light" size:15.0];
 //	UIFont *chevinLightItalic = [UIFont fontWithName:@"ChevinCyrillic-LightItalic" size:15.0];
 	UIFont *chevinBold = [UIFont fontWithName:@"ChevinCyrillic-Bold" size:15.0];
@@ -459,10 +392,21 @@
 //	UIFont *chevinMediumSmallest = [UIFont fontWithName:@"ChevinPro-Medium" size:12.0];
 	
 	
+	NSArray *localEmails = nil;
 	
+	if ([tre02 isSelected]) {
+		localEmails = emails;
+	} else if ([tre01 isSelected]) {
+		localEmails = emails_x;
+	} else if ([tre03 isSelected]) {
+		localEmails = emails_v;
+	}
+	
+	
+	
+	MCSwipeTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
     if (cell == nil) {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//        cell = [[MCSwipeTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         cell = [[MCSwipeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 	}
 	
@@ -483,9 +427,7 @@
 	[cell.contentView addSubview:timeLabel];
 	
 	
-	
 	subjectLabel = [[UILabel alloc] initWithFrame:CGRectMake(30.0, 26.0, 220.0, 18.0)];
-	//        subjectLabel.tag = SECONDLABEL_TAG;
 	subjectLabel.font = chevinBold;
 	subjectLabel.textColor = [UIColor blackColor];
 	subjectLabel.backgroundColor = [UIColor clearColor];
@@ -493,14 +435,11 @@
 	
 	
 	messageBodyLabel = [[UILabel alloc] initWithFrame:CGRectMake(30.0, 46.0, 220.0, 36.0)];
-	//        subjectLabel.tag = SECONDLABEL_TAG;
-	//        messageBodyLabel.font = [UIFont systemFontOfSize:14.0];
 	messageBodyLabel.font = chevinMedium;
 	messageBodyLabel.textColor = [UIColor lightGrayColor];
 	messageBodyLabel.numberOfLines = 2;
 	messageBodyLabel.backgroundColor = [UIColor clearColor];
 	[cell.contentView addSubview:messageBodyLabel];
-	
 	
 	
 	if ([[unreadEmails objectForKey:[[localEmails objectAtIndex:[indexPath row]] objectForKey:@"id"]] isEqualToString:@"unread"]) {
@@ -509,9 +448,6 @@
 		[unread setCenter:CGPointMake(15.0, 16.0)];
 		[cell.contentView addSubview:unread];
 	}
-	
-	
-	
 	
 	
 	if ([[[localEmails objectAtIndex:[indexPath row]] objectForKey:@"starred"] isEqual:@1]) {
@@ -539,11 +475,9 @@
 		counterView.center = CGPointMake(290, 42);
 		counterView.image = [UIImage imageNamed:@"count"];
 		
-		
 		[counterView addSubview:counter];
 		[cell.contentView addSubview:counterView];
 	}
-	
 	
 	
 	discl = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 13, 13)];
@@ -551,29 +485,15 @@
 	[discl setImage:[UIImage imageNamed:@"disclosureInd"]];
 	[cell.contentView addSubview:discl];
 		
-		
-		
 	
 	fromLabel.text = [NSString stringWithFormat:@"%@", [[localEmails objectAtIndex:[indexPath row]] objectForKey:@"from"]];
 	timeLabel.text = [self userVisibleDateTimeStringForRFC3339DateTimeString:[[localEmails objectAtIndex:[indexPath row]] objectForKey:@"received_at"]];
 	subjectLabel.text = [NSString stringWithFormat:@"%@", [[localEmails objectAtIndex:[indexPath row]] objectForKey:@"subject"]];
 	counter.text = [NSString stringWithFormat:@"%@", [[localEmails objectAtIndex:[indexPath row]] objectForKey:@"messages"]];
 	messageBodyLabel.text = [NSString stringWithFormat:@"%@", [[localEmails objectAtIndex:[indexPath row]] objectForKey:@"body"]];
-		
-
-//	}
-    
-	
-	
-	
-	
-	
+			
 	
 	[cell setDelegate:self];
-	
-	
-	
-	
 	
 	
 	
@@ -608,17 +528,8 @@
 						fourthColor:[UIColor colorWithRed:227.0 / 255.0 green:38.0 / 255.0 blue:54.0 / 255.0 alpha:1.0]
 		 ];
 	}
-
 	
 	
-	
-	
-
-//thirdIconName:@"clock.png"
-//thirdColor:[UIColor colorWithRed:254.0 / 255.0 green:217.0 / 255.0 blue:56.0 / 255.0 alpha:1.0]
-//fourthIconName:@"list.png"
-//fourthColor:[UIColor colorWithRed:206.0 / 255.0 green:149.0 / 255.0 blue:98.0 / 255.0 alpha:1.0]
-
 	[cell setMode:MCSwipeTableViewCellModeExit];
 
     [cell.contentView setBackgroundColor:[UIColor whiteColor]];
@@ -630,11 +541,10 @@
 	
 	
 	
-	
-	
-	
-	
-	if ([tre02 isSelected] && [localEmails count] < [[pages objectForKey:@"total"] intValue]) {
+	if ([tre02 isSelected]
+		&& [localEmails count] < [[pages objectForKey:@"total"] intValue]
+		&& [[pages objectForKey:@"current_page"] intValue] != ceil([[pages objectForKey:@"total"] intValue] / [[pages objectForKey:@"per_page"] intValue])
+		) {
 		if ([indexPath row] == [localEmails count]-1) {
 			[self reloadDataFromNetwork:[[pages objectForKey:@"current_page"] intValue]+1];
 		}
@@ -643,14 +553,8 @@
 	
 	
 	
-    // Configure the cell...
 	
-	
-	//    cell.textLabel.text = @"ewf";
-	
-
     return cell;
-	
 }
 
 
@@ -685,18 +589,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-	
-//	[[self tableView] setBackgroundColor:[UIColor yellowColor]];
 	
 //	self.navigationItem.leftBarButtonItem = self.editButtonItem;
 	
 //	UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadDataFromNetwork)];
 //	self.navigationItem.rightBarButtonItem = reloadButton;
 	
+	[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navBar.png"] forBarMetrics:UIBarMetricsDefault];
+	
 	
 	UIView *treillageView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 162, 32)];
-//	[treillageView setBackgroundColor:[UIColor redColor]];
 	
 	tre01 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 54, 32)];
 	tre02 = [[UIButton alloc] initWithFrame:CGRectMake(54, 0, 54, 32)];
@@ -730,23 +632,16 @@
 	[treillageView addSubview:tre03];
 	
 	[[self navigationItem] setTitleView:treillageView];
-
-
-	[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navBar.png"] forBarMetrics:UIBarMetricsDefault];
-	
-	_nbItems = 20;
 	
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-	
 	UIImageView *mailListView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, self.tableView.frame.size.height)];
-//	UIImageView *imv = [[UIImageView alloc] initWithImage:@"string"
 	[mailListView setImage:[UIImage imageNamed:@"mailList.png"]];
-		
 	[[self tableView] setBackgroundView:mailListView];
 		
+	
 	
 //	searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
 //	searchBar.tintColor = [UIColor lightGrayColor];
@@ -755,23 +650,22 @@
 
 	
 	
-	
 	refreshControl = [[UIRefreshControl alloc] init];
 	[refreshControl addTarget:self
 					   action:@selector(handleRefresh)
 			 forControlEvents:UIControlEventValueChanged];
 	[self.tableView addSubview:refreshControl];
 	
-	[self.tableView setRowHeight:85.0];
 	
+	[self.tableView setRowHeight:85.0];
 	
 	
 	
 	[self.refreshControl beginRefreshing];
 	
-    if (self.tableView.contentOffset.y == 0 || 1==1) {
+    if (self.tableView.contentOffset.y == 0) {
 		
-        [UIView animateWithDuration:0.60
+        [UIView animateWithDuration:0.50
 							  delay:0
 							options:UIViewAnimationOptionBeginFromCurrentState
 						 animations:^(void){
@@ -781,14 +675,6 @@
 							 [self handleRefresh];
 						 }];
     }
-
-	
-	
-	
-	
-
-//	[[self tableView] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"list.png"]]];
-
 
 }
 
