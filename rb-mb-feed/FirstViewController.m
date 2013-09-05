@@ -486,7 +486,25 @@
 	[cell.contentView addSubview:discl];
 		
 	
-	fromLabel.text = [NSString stringWithFormat:@"%@", [[localEmails objectAtIndex:[indexPath row]] objectForKey:@"from"]];
+	
+	NSString *fullFrom = [[localEmails objectAtIndex:[indexPath row]] objectForKey:@"from"];
+	NSError  *error  = NULL;
+	
+	NSRegularExpression *regex = [NSRegularExpression
+								  regularExpressionWithPattern:@"(\\w[-._\\w]*\\w@\\w[-._\\w]*\\w\\.\\w{2,5}){1,1}|([\\w ]+)"
+								  options:0
+								  error:&error];
+	
+	NSRange range = [regex rangeOfFirstMatchInString:fullFrom
+											   options:0
+												 range:NSMakeRange(0, [fullFrom length])];
+	
+	NSString *shortFrom = [fullFrom substringWithRange:range];
+		
+	fromLabel.text = shortFrom;
+	
+	
+	
 	timeLabel.text = [self userVisibleDateTimeStringForRFC3339DateTimeString:[[localEmails objectAtIndex:[indexPath row]] objectForKey:@"received_at"]];
 	subjectLabel.text = [NSString stringWithFormat:@"%@", [[localEmails objectAtIndex:[indexPath row]] objectForKey:@"subject"]];
 	counter.text = [NSString stringWithFormat:@"%@", [[localEmails objectAtIndex:[indexPath row]] objectForKey:@"messages"]];
@@ -549,6 +567,13 @@
 			[self reloadDataFromNetwork:[[pages objectForKey:@"current_page"] intValue]+1];
 		}
 	}
+	
+	
+//	NSLog(@"from - %@", [NSString stringWithFormat:@"%@", [[localEmails objectAtIndex:[indexPath row]] objectForKey:@"from"]]);
+	
+	
+	
+	
 	
 	
 	
