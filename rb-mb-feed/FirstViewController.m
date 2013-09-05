@@ -19,9 +19,8 @@
 
 @implementation FirstViewController
 
-@synthesize tableView, tre01, tre02, tre03, refreshControl,
-searchBar,
-
+@synthesize tableView, tre01, tre02, tre03,
+			refreshControl, searchBar,
 			emails, emails_x, emails_v, pages, unreadEmails;
 
 
@@ -104,7 +103,12 @@ searchBar,
 																 error:&error];
 
 		if (error) {
-			NSLog(@"error handled 1 - %@", error);
+			if ([refreshControl isRefreshing]) {
+				[refreshControl endRefreshing];
+			}
+			
+			NSLog(@"Network error - %@", error);
+			
 		} else {
 			
 
@@ -134,12 +138,13 @@ searchBar,
 					unreadEmails = [[NSMutableDictionary alloc] init];
 				}
 				
+//				Верхняя обновлялка всегда просит страницу=0, поэтому сбрасываем все массивы.
+//				(Нижняя обновлялка просит все остальные страницы.)
 				if (forPage == 0) {
 					[emails removeAllObjects];
 					[emails_x removeAllObjects];
 					[emails_v removeAllObjects];
 					[unreadEmails removeAllObjects];
-					
 				}
 				
 				
@@ -239,14 +244,77 @@ searchBar,
 		[unreadEmails setValue:@"read" forKey:[[emails_v objectAtIndex:[indexPath row]] objectForKey:@"id"]];
 	}
 	
-	[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	
 	return 85.0;
+
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+	NSArray *localEmails = nil;
+	
+	if ([tre02 isSelected]) {
+		localEmails = emails;
+	} else if ([tre01 isSelected]) {
+		localEmails = emails_x;
+	} else if ([tre03 isSelected]) {
+		localEmails = emails_v;
+	}
+	
+	if ([localEmails count] == 0) {
+		return self.tableView.bounds.size.height;
+		NSLog(@"- %f", self.tableView.bounds.size.height);
+	}
+	
+	return 0;
+
+}
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+	NSArray *localEmails = nil;
+	
+	if ([tre02 isSelected]) {
+		localEmails = emails;
+	} else if ([tre01 isSelected]) {
+		localEmails = emails_x;
+	} else if ([tre03 isSelected]) {
+		localEmails = emails_v;
+	}
+	
+	if ([localEmails count] == 0) {
+
+		
+		UIView *noDataSplashView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,
+																		   self.tableView.bounds.size.width,
+																		   self.tableView.bounds.size.height)];
+		
+		UIImageView *noDataSplash = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 150, 150)];
+//		[noDataSplash setCenter:CGPointMake( self.tableView.bounds.size.width/2 , self.tableView.bounds.size.height/2 - 100 )];
+		[noDataSplash setImage:[UIImage imageNamed:@"splash"]];
+
+		
+		[noDataSplashView addSubview:noDataSplash];
+		[noDataSplash setCenter:CGPointMake( noDataSplashView.bounds.size.width/2 , noDataSplashView.bounds.size.height/2 - 100 )];
+		
+
+//	[[self view] addSubview:noDataSplash];
+		
+		return noDataSplashView;
+	}
+	
+	return nil;
+	
+
 }
 
 
@@ -676,12 +744,9 @@ searchBar,
 	UIImageView *mailListView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, self.tableView.frame.size.height)];
 //	UIImageView *imv = [[UIImageView alloc] initWithImage:@"string"
 	[mailListView setImage:[UIImage imageNamed:@"mailList.png"]];
-	
-
-	
+		
 	[[self tableView] setBackgroundView:mailListView];
-	
-	
+		
 	
 //	searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
 //	searchBar.tintColor = [UIColor lightGrayColor];
