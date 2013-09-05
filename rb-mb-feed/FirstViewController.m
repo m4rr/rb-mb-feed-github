@@ -273,7 +273,7 @@
 																		   self.tableView.bounds.size.width,
 																		   self.tableView.bounds.size.height)];
 		UIImageView *noDataSplash = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 150, 150)];
-		[noDataSplash setImage:[UIImage imageNamed:@"splash"]];
+		[noDataSplash setImage:[UIImage imageNamed:@"splash1"]];
 		
 		[noDataSplashView addSubview:noDataSplash];
 		[noDataSplash setCenter:CGPointMake( noDataSplashView.bounds.size.width/2 , noDataSplashView.bounds.size.height/2 - 100 )];
