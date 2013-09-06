@@ -28,7 +28,6 @@
 		034B526B17D487C500D8C5F0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 034B526917D487C500D8C5F0 /* InfoPlist.strings */; };
 		034B526D17D487C500D8C5F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 034B526C17D487C500D8C5F0 /* main.m */; };
 		034B527117D487C500D8C5F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 034B527017D487C500D8C5F0 /* AppDelegate.m */; };
-		034B527317D487C500D8C5F0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 034B527217D487C500D8C5F0 /* Images.xcassets */; };
 		034B527A17D487C500D8C5F0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034B527917D487C500D8C5F0 /* XCTest.framework */; };
 		034B527B17D487C500D8C5F0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034B526017D487C500D8C5F0 /* Foundation.framework */; };
 		034B527C17D487C500D8C5F0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034B526417D487C500D8C5F0 /* UIKit.framework */; };
@@ -108,7 +107,6 @@
 		034B526E17D487C500D8C5F0 /* rb-mb-feed-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "rb-mb-feed-Prefix.pch"; sourceTree = "<group>"; };
 		034B526F17D487C500D8C5F0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		034B527017D487C500D8C5F0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		034B527217D487C500D8C5F0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		034B527817D487C500D8C5F0 /* rb-mb-feedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "rb-mb-feedTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		034B527917D487C500D8C5F0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		034B528117D487C500D8C5F0 /* rb-mb-feedTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "rb-mb-feedTests-Info.plist"; sourceTree = "<group>"; };
@@ -216,7 +214,6 @@
 				034B529217D4885200D8C5F0 /* FirstViewController.m */,
 				0342114217D64E7B00F7B66A /* MCSwipeTableViewCell.h */,
 				0342114317D64E7B00F7B66A /* MCSwipeTableViewCell.m */,
-				034B527217D487C500D8C5F0 /* Images.xcassets */,
 				0386DAA817D62A9C00B5C305 /* Images Res */,
 				034B529F17D495D600D8C5F0 /* Fonts Res */,
 				034B526717D487C500D8C5F0 /* Supporting Files */,
@@ -395,7 +392,6 @@
 				034B526B17D487C500D8C5F0 /* InfoPlist.strings in Resources */,
 				034B529E17D4956700D8C5F0 /* ChevinCyrillic-LightItalic.ttf in Resources */,
 				034B529C17D4956700D8C5F0 /* ChevinCyrillic-BoldItalic.ttf in Resources */,
-				034B527317D487C500D8C5F0 /* Images.xcassets in Resources */,
 				034B529B17D4956700D8C5F0 /* ChevinCyrillic-Bold.ttf in Resources */,
 				034B52A117D4996400D8C5F0 /* ChevinPro-Medium.otf in Resources */,
 				034B529D17D4956700D8C5F0 /* ChevinCyrillic-Light.ttf in Resources */,
