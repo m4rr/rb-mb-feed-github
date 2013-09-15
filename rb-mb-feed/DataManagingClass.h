@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "MCSwipeTableViewCell.h"
 
+
 @protocol DataManagerDelegate <NSObject>
 
 @end
+
 
 @interface DataManagingClass : NSObject <MCSwipeTableViewCellDelegate>
 
@@ -27,13 +29,12 @@
 
 @property (nonatomic) NSDictionary *pages;
 
-
 - (void)startLoadingData;
+- (void)askForMoreItemsWhileIndexPath:(NSIndexPath *)indexPath;
 
 - (NSInteger)messagesCount;
 - (NSDictionary *)messageForIndexPath:(NSIndexPath *)indexPath;
 - (void)makeReadMessageAtIndexPath:(NSIndexPath *)indexPath;
-- (void)askForMoreItemsAtIndexPath:(NSIndexPath *)indexPath;
 
 
 @end

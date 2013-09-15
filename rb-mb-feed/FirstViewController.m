@@ -47,12 +47,6 @@
 	_dataManager = [[DataManagingClass alloc] init];
 	[_dataManager setDelegate:self];
 
-/*
-	UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
-																				  target:self
-																				  action:@selector(reloadDataFromNetwork)];
-	[[self navigationItem] setRightBarButtonItem:reloadButton];
- */
 	
 	[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:GUINavigationBarBg] forBarMetrics:UIBarMetricsDefault];
 	
@@ -66,21 +60,21 @@
 	[treillageInbox addTarget:self action:@selector(treillageInboxFired) forControlEvents:UIControlEventTouchUpInside];
 	[treillageDone  addTarget:self action:@selector(treillageDoneFired)  forControlEvents:UIControlEventTouchUpInside];
 	
-	[treillageTrash setBackgroundImage:[UIImage imageNamed:GUITreillageTrashBgNormal] forState:UIControlStateNormal];
-	[treillageTrash setBackgroundImage:[UIImage imageNamed:GUITreillageTrashBgSelected] forState:UIControlStateSelected];
+	[treillageTrash setBackgroundImage:[UIImage imageNamed:GUITreillageTrashBgNormal]      forState:UIControlStateNormal];
+	[treillageTrash setBackgroundImage:[UIImage imageNamed:GUITreillageTrashBgSelected]    forState:UIControlStateSelected];
 	[treillageTrash setBackgroundImage:[UIImage imageNamed:GUITreillageTrashBgHighlighted] forState:UIControlStateHighlighted];
 	[treillageTrash setBackgroundImage:[UIImage imageNamed:GUITreillageTrashBgHighlighted] forState:UIControlStateSelected | UIControlStateHighlighted];
 	[treillageTrash setAdjustsImageWhenHighlighted:NO];
 	
-	[treillageInbox setBackgroundImage:[UIImage imageNamed:GUITreillageInboxBgNormal] forState:UIControlStateNormal];
-	[treillageInbox setBackgroundImage:[UIImage imageNamed:GUITreillageInboxBgSelected] forState:UIControlStateSelected];
+	[treillageInbox setBackgroundImage:[UIImage imageNamed:GUITreillageInboxBgNormal]      forState:UIControlStateNormal];
+	[treillageInbox setBackgroundImage:[UIImage imageNamed:GUITreillageInboxBgSelected]    forState:UIControlStateSelected];
 	[treillageInbox setBackgroundImage:[UIImage imageNamed:GUITreillageInboxBgHighlighted] forState:UIControlStateHighlighted];
 	[treillageInbox setBackgroundImage:[UIImage imageNamed:GUITreillageInboxBgHighlighted] forState:UIControlStateSelected | UIControlStateHighlighted];
 	[treillageInbox setAdjustsImageWhenHighlighted:NO];
 	[treillageInbox setSelected:YES];
 	
-	[treillageDone setBackgroundImage:[UIImage imageNamed:GUITreillageDoneBgNormal] forState:UIControlStateNormal];
-	[treillageDone setBackgroundImage:[UIImage imageNamed:GUITreillageDoneBgSelected] forState:UIControlStateSelected];
+	[treillageDone setBackgroundImage:[UIImage imageNamed:GUITreillageDoneBgNormal]      forState:UIControlStateNormal];
+	[treillageDone setBackgroundImage:[UIImage imageNamed:GUITreillageDoneBgSelected]    forState:UIControlStateSelected];
 	[treillageDone setBackgroundImage:[UIImage imageNamed:GUITreillageDoneBgHighlighted] forState:UIControlStateHighlighted];
 	[treillageDone setBackgroundImage:[UIImage imageNamed:GUITreillageDoneBgHighlighted] forState:UIControlStateSelected | UIControlStateHighlighted];
 	[treillageDone setAdjustsImageWhenHighlighted:NO];
@@ -109,6 +103,7 @@
 	
 	[self forceRefresh];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -282,21 +277,12 @@
 
 	
 	
-	[_dataManager askForMoreItemsAtIndexPath:indexPath];
+	[_dataManager askForMoreItemsWhileIndexPath:indexPath];
 	
 	
 	
     return cell;
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -324,10 +310,10 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
 	if ([_dataManager messagesCount] == 0) {
-		UIView *emptySplashView = [[UIView alloc] initWithFrame:GUIMailListEmptySplashViewFrame];
 		UIImageView *emptySplash = [[UIImageView alloc] initWithFrame:GUIMailListEmptySplashFrame];
 		[emptySplash setImage:[UIImage imageNamed:GUIMailListEmptySplashImg]];
-		
+
+		UIView *emptySplashView = [[UIView alloc] initWithFrame:GUIMailListEmptySplashViewFrame];
 		[emptySplashView addSubview:emptySplash];
 		[emptySplash setCenter:GUIMailListEmptySplashCenter];
 		
@@ -339,15 +325,13 @@
 
 
 
-
-
 #pragma mark - Actions
 
 - (void)treillageTrashFired
 {
 	[treillageTrash setSelected:YES];
 	[treillageInbox setSelected:NO];
-	[treillageDone setSelected:NO];
+	[treillageDone  setSelected:NO];
 	
 	[_dataManager setCurrentState:0];
 }
@@ -357,7 +341,7 @@
 {
 	[treillageTrash setSelected:NO];
 	[treillageInbox setSelected:YES];
-	[treillageDone setSelected:NO];
+	[treillageDone  setSelected:NO];
 	
 	[_dataManager setCurrentState:1];
 }
@@ -367,7 +351,7 @@
 {
 	[treillageTrash setSelected:NO];
 	[treillageInbox setSelected:NO];
-	[treillageDone setSelected:YES];
+	[treillageDone  setSelected:YES];
 	
 	[_dataManager setCurrentState:2];
 }

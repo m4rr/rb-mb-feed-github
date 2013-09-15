@@ -78,7 +78,7 @@
 }
 
 
-- (void)askForMoreItemsAtIndexPath:(NSIndexPath *)indexPath
+- (void)askForMoreItemsWhileIndexPath:(NSIndexPath *)indexPath
 {
 	if (currentState == 1
 		&& [currentBox count] < [[pages objectForKey:@"total"] intValue]
