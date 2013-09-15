@@ -14,23 +14,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-//    self.window.backgroundColor = [UIColor whiteColor];
-	
+	// Override point for customization after application launch.
+
 	FirstViewController *rbViewController = [[FirstViewController alloc] init];
-			
 	UINavigationController *rbNavigationController = [[UINavigationController alloc] initWithRootViewController:rbViewController];
-	
 	[self.window setRootViewController:rbNavigationController];
-
-    
-//	self.window.backgroundColor = [UIColor blackColor];
-
 	[self.window makeKeyAndVisible];
-	
-	
 
-	
     return YES;
 }
 

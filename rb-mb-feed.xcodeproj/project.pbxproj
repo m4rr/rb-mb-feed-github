@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0306825B17E4D87800AB4525 /* DataManagingClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0306825A17E4D87800AB4525 /* DataManagingClass.m */; };
 		0340CD6C17D673930076F935 /* tre-v-hi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0340CD6B17D673930076F935 /* tre-v-hi@2x.png */; };
 		0340CD6F17D677DA0076F935 /* tre-mb-hi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0340CD6D17D677DA0076F935 /* tre-mb-hi@2x.png */; };
 		0340CD7017D677DA0076F935 /* tre-x-hi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0340CD6E17D677DA0076F935 /* tre-x-hi@2x.png */; };
@@ -81,6 +82,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0306825917E4D87700AB4525 /* DataManagingClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManagingClass.h; sourceTree = "<group>"; };
+		0306825A17E4D87800AB4525 /* DataManagingClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManagingClass.m; sourceTree = "<group>"; };
+		0306825C17E4D8D200AB4525 /* GUIConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GUIConsts.h; path = ../GUIConsts.h; sourceTree = "<group>"; };
 		0340CD6B17D673930076F935 /* tre-v-hi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tre-v-hi@2x.png"; sourceTree = "<group>"; };
 		0340CD6D17D677DA0076F935 /* tre-mb-hi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tre-mb-hi@2x.png"; sourceTree = "<group>"; };
 		0340CD6E17D677DA0076F935 /* tre-x-hi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tre-x-hi@2x.png"; sourceTree = "<group>"; };
@@ -212,6 +216,9 @@
 				034B527017D487C500D8C5F0 /* AppDelegate.m */,
 				034B529117D4885200D8C5F0 /* FirstViewController.h */,
 				034B529217D4885200D8C5F0 /* FirstViewController.m */,
+				0306825C17E4D8D200AB4525 /* GUIConsts.h */,
+				0306825917E4D87700AB4525 /* DataManagingClass.h */,
+				0306825A17E4D87800AB4525 /* DataManagingClass.m */,
 				0342114217D64E7B00F7B66A /* MCSwipeTableViewCell.h */,
 				0342114317D64E7B00F7B66A /* MCSwipeTableViewCell.m */,
 				0386DAA817D62A9C00B5C305 /* Images Res */,
@@ -461,6 +468,7 @@
 				034B529317D4885200D8C5F0 /* FirstViewController.m in Sources */,
 				034B526D17D487C500D8C5F0 /* main.m in Sources */,
 				0342114417D64E7B00F7B66A /* MCSwipeTableViewCell.m in Sources */,
+				0306825B17E4D87800AB4525 /* DataManagingClass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

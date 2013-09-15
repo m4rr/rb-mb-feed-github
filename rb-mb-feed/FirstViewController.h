@@ -7,22 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataManagingClass.h"
 
-@interface FirstViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface FirstViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, DataManagerDelegate>
+
+@property (nonatomic, strong) id dataManager;
 
 @property (nonatomic, strong) UITableView *tableView;
 
-@property UIButton *tre01;
-@property UIButton *tre02;
-@property UIButton *tre03;
-@property (nonatomic) UIRefreshControl *refreshControl;
-@property (nonatomic) UISearchBar *searchBar;
+@property (nonatomic, strong) UIButton *treillageTrash;
+@property (nonatomic, strong) UIButton *treillageInbox;
+@property (nonatomic, strong) UIButton *treillageDone;
 
-@property NSDictionary *pages;
-@property NSMutableArray *emails;
-@property NSMutableArray *emails_x;
-@property NSMutableArray *emails_v;
-@property NSMutableDictionary *unreadEmails;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 
 @end
