@@ -14,7 +14,7 @@
 
 #define GUITableViewFrame					CGRectMake(0.0, 0.0, self.view.bounds.size.width, self.view.bounds.size.height)
 
-#define GUIMailListViewFrame				CGRectMake(0.0, 0.0, 320.0, self.tableView.frame.size.height)
+#define GUIMailListViewFrame				CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, self.tableView.bounds.size.height)
 #define GUIMailListEmptySplashViewFrame		CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, self.tableView.bounds.size.height)
 #define GUIMailListEmptySplashFrame			CGRectMake(0.0, 0.0, 150.0, 150.0)
 

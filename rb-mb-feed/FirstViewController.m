@@ -50,6 +50,11 @@
 	
 	[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:GUINavigationBarBg] forBarMetrics:UIBarMetricsDefault];
 	
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
 	UIView *treillageView = [[UIView alloc] initWithFrame:GUITreillageFrame];
 	
 	treillageTrash = [[UIButton alloc] initWithFrame:GUITreillageTrashFrame];
@@ -84,11 +89,8 @@
 	[treillageView addSubview:treillageDone];
 	
 	[[self navigationItem] setTitleView:treillageView];
-}
 
-
-- (void)viewWillAppear:(BOOL)animated
-{
+	
 	UIImageView *mailListView = [[UIImageView alloc] initWithFrame:GUIMailListViewFrame];
 	[mailListView setImage:[UIImage imageNamed:GUIMailListViewBg]];
 	[[self tableView] setBackgroundView:mailListView];
@@ -137,8 +139,6 @@
 	}
 	
 	
-	NSDictionary *message = [_dataManager messageForIndexPath:indexPath];
-	
 	UILabel *fromToLabel, *subjectLabel, *messageBodyLabel, *timeLabel, *counter;
 	UIImageView *starIndicator, *disclosureIndicator, *unreadIndicator;
 	
@@ -147,6 +147,8 @@
 	UIFont *chevinBold = [UIFont fontWithName:@"ChevinCyrillic-Bold" size:15.0];
 	UIFont *chevinBoldXSmall = [UIFont fontWithName:@"ChevinCyrillic-Bold" size:12.0];
 	
+	
+	NSDictionary *message = [_dataManager messageForIndexPath:indexPath];
 	
 	fromToLabel = [[UILabel alloc] initWithFrame:GUICellFromLabelFrame];
 	[fromToLabel setFont:chevinMedium];
@@ -312,10 +314,10 @@
 	if ([_dataManager messagesCount] == 0) {
 		UIImageView *emptySplash = [[UIImageView alloc] initWithFrame:GUIMailListEmptySplashFrame];
 		[emptySplash setImage:[UIImage imageNamed:GUIMailListEmptySplashImg]];
+		[emptySplash setCenter:GUIMailListEmptySplashCenter];
 
 		UIView *emptySplashView = [[UIView alloc] initWithFrame:GUIMailListEmptySplashViewFrame];
 		[emptySplashView addSubview:emptySplash];
-		[emptySplash setCenter:GUIMailListEmptySplashCenter];
 		
 		return emptySplashView;
 	}

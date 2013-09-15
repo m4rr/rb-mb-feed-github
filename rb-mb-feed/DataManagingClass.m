@@ -81,10 +81,9 @@
 	if (currentState == DMCurrentStateInbox
 		&& [currentBox count] < [[pages objectForKey:@"total"] intValue]
 		&& [[pages objectForKey:@"current_page"] intValue] != ceil([[pages objectForKey:@"total"] intValue] / [[pages objectForKey:@"per_page"] intValue])
+		&& [indexPath row] == [inbox count]-1
 		) {
-		if ([indexPath row] == [inbox count]-1) {
 			[self reloadDataFromNetwork:[[pages objectForKey:@"current_page"] intValue]+1];
-		}
 	}
 }
 
