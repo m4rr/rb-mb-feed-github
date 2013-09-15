@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "MCSwipeTableViewCell.h"
 
+typedef NS_ENUM(NSUInteger, DMCurrentState){
+    DMCurrentStateTrash = 0,
+    DMCurrentStateInbox,
+    DMCurrentStateDone
+};
 
 @protocol DataManagerDelegate <NSObject>
 

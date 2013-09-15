@@ -11,9 +11,7 @@
 
 @implementation DataManagingClass
 
-@synthesize delegate,
-			currentBox,
-			currentState, currentPage, pages, inbox, trash, done;
+@synthesize delegate, currentBox, currentState, currentPage, pages, inbox, trash, done;
 
 
 
@@ -23,11 +21,11 @@
 {
 	currentState = newCurrentState;
 	
-	if (currentState == 0) {
+	if (currentState == DMCurrentStateTrash) {
 		currentBox = trash;
-	} else if (currentState == 1) {
+	} else if (currentState == DMCurrentStateInbox) {
 		currentBox = inbox;
-	} else if (currentState == 2) {
+	} else if (currentState == DMCurrentStateDone) {
 		currentBox = done;
 	}
 	
@@ -80,7 +78,7 @@
 
 - (void)askForMoreItemsWhileIndexPath:(NSIndexPath *)indexPath
 {
-	if (currentState == 1
+	if (currentState == DMCurrentStateInbox
 		&& [currentBox count] < [[pages objectForKey:@"total"] intValue]
 		&& [[pages objectForKey:@"current_page"] intValue] != ceil([[pages objectForKey:@"total"] intValue] / [[pages objectForKey:@"per_page"] intValue])
 		) {
@@ -138,7 +136,7 @@
 				
 				if (!currentBox) {
 					currentBox = inbox;
-					currentState = 1;
+					currentState = DMCurrentStateInbox;
 				}
 								
 				if (forPage == 0) {
@@ -257,12 +255,12 @@
 
 - (void)swipeTableViewCell:(MCSwipeTableViewCell *)cell didTriggerState:(MCSwipeTableViewCellState)state withMode:(MCSwipeTableViewCellMode)mode
 {
-//	NSLog(@"IndexPath : %@ - MCSwipeTableViewCellState : %d - MCSwipeTableViewCellMode : %d", [[_mainViewController tableView] indexPathForCell:cell], state, mode);
+//	NSLog(@"IndexPath : %@ - MCSwipeTableViewCellState : %d - MCSwipeTableViewCellMode : %d", [[delegate tableView] indexPathForCell:cell], state, mode);
 	
 	NSInteger row = [[[delegate tableView] indexPathForCell:cell] row];
 	
     if (mode == MCSwipeTableViewCellModeExit) {
-		if (currentState == 1) { // inbox
+		if (currentState == DMCurrentStateInbox) {
 			if (state == 1) {
 				[[delegate tableView] beginUpdates];
 				[done addObject:[inbox objectAtIndex:row]];
@@ -277,7 +275,7 @@
 				[[delegate tableView] deleteRowsAtIndexPaths:@[[[delegate tableView] indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationFade];
 				[[delegate tableView] endUpdates];
 			}
-		} else if (currentState == 0) { // trash
+		} else if (currentState == DMCurrentStateTrash) {
 			if (state == 1) {
 				[[delegate tableView] beginUpdates];
 				[inbox insertObject:[trash objectAtIndex:row] atIndex:0];
@@ -292,7 +290,7 @@
 				[[delegate tableView] deleteRowsAtIndexPaths:@[[[delegate tableView] indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationFade];
 				[[delegate tableView] endUpdates];
 			}
-		} else if (currentState == 2) { // done
+		} else if (currentState == DMCurrentStateDone) {
 			if (state == 3) {
 				[[delegate tableView] beginUpdates];
 				[inbox insertObject:[done objectAtIndex:row] atIndex:0];

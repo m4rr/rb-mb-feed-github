@@ -35,9 +35,6 @@
 		034B528417D487C500D8C5F0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 034B528217D487C500D8C5F0 /* InfoPlist.strings */; };
 		034B529317D4885200D8C5F0 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034B529217D4885200D8C5F0 /* FirstViewController.m */; };
 		034B529B17D4956700D8C5F0 /* ChevinCyrillic-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 034B529717D4956700D8C5F0 /* ChevinCyrillic-Bold.ttf */; };
-		034B529C17D4956700D8C5F0 /* ChevinCyrillic-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 034B529817D4956700D8C5F0 /* ChevinCyrillic-BoldItalic.ttf */; };
-		034B529D17D4956700D8C5F0 /* ChevinCyrillic-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 034B529917D4956700D8C5F0 /* ChevinCyrillic-Light.ttf */; };
-		034B529E17D4956700D8C5F0 /* ChevinCyrillic-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 034B529A17D4956700D8C5F0 /* ChevinCyrillic-LightItalic.ttf */; };
 		034B52A117D4996400D8C5F0 /* ChevinPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 034B52A017D4996400D8C5F0 /* ChevinPro-Medium.otf */; };
 		0351555217D8A7FF0070EF52 /* splash1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0351555117D8A7FF0070EF52 /* splash1@2x.png */; };
 		0365612717D86BAC0021B0D7 /* splash1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0365612517D86BAC0021B0D7 /* splash1.png */; };
@@ -119,9 +116,6 @@
 		034B529117D4885200D8C5F0 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		034B529217D4885200D8C5F0 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		034B529717D4956700D8C5F0 /* ChevinCyrillic-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ChevinCyrillic-Bold.ttf"; sourceTree = "<group>"; };
-		034B529817D4956700D8C5F0 /* ChevinCyrillic-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ChevinCyrillic-BoldItalic.ttf"; sourceTree = "<group>"; };
-		034B529917D4956700D8C5F0 /* ChevinCyrillic-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ChevinCyrillic-Light.ttf"; sourceTree = "<group>"; };
-		034B529A17D4956700D8C5F0 /* ChevinCyrillic-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ChevinCyrillic-LightItalic.ttf"; sourceTree = "<group>"; };
 		034B52A017D4996400D8C5F0 /* ChevinPro-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ChevinPro-Medium.otf"; sourceTree = "<group>"; };
 		0351555117D8A7FF0070EF52 /* splash1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash1@2x.png"; sourceTree = "<group>"; };
 		0365612517D86BAC0021B0D7 /* splash1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash1.png; sourceTree = "<group>"; };
@@ -261,9 +255,6 @@
 			isa = PBXGroup;
 			children = (
 				034B529717D4956700D8C5F0 /* ChevinCyrillic-Bold.ttf */,
-				034B529817D4956700D8C5F0 /* ChevinCyrillic-BoldItalic.ttf */,
-				034B529917D4956700D8C5F0 /* ChevinCyrillic-Light.ttf */,
-				034B529A17D4956700D8C5F0 /* ChevinCyrillic-LightItalic.ttf */,
 				034B52A017D4996400D8C5F0 /* ChevinPro-Medium.otf */,
 			);
 			name = "Fonts Res";
@@ -397,11 +388,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				034B526B17D487C500D8C5F0 /* InfoPlist.strings in Resources */,
-				034B529E17D4956700D8C5F0 /* ChevinCyrillic-LightItalic.ttf in Resources */,
-				034B529C17D4956700D8C5F0 /* ChevinCyrillic-BoldItalic.ttf in Resources */,
 				034B529B17D4956700D8C5F0 /* ChevinCyrillic-Bold.ttf in Resources */,
 				034B52A117D4996400D8C5F0 /* ChevinPro-Medium.otf in Resources */,
-				034B529D17D4956700D8C5F0 /* ChevinCyrillic-Light.ttf in Resources */,
 				0386DAA517D629A400B5C305 /* Default-568h@2x.png in Resources */,
 				0386DAA717D62A8F00B5C305 /* navBar@2x.png in Resources */,
 				0386DAAA17D62FA000B5C305 /* navBar.png in Resources */,

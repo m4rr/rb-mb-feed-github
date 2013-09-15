@@ -235,7 +235,7 @@
 	
 	[cell setMode:MCSwipeTableViewCellModeExit];
 
-	if ([_dataManager currentState] == 1) { // inbox
+	if ([_dataManager currentState] == DMCurrentStateInbox) {
 		[cell setFirstStateIconName:@"check"
 						 firstColor:[UIColor GUISwipeCheckColor]
 				secondStateIconName:nil
@@ -245,7 +245,7 @@
 					 fourthIconName:nil
 						fourthColor:nil
 		 ];
-	} else if ([_dataManager currentState] == 0) { // trash
+	} else if ([_dataManager currentState] == DMCurrentStateTrash) {
 		[cell setFirstStateIconName:@"box"
 						 firstColor:[UIColor GUISwipeBoxColor]
 				secondStateIconName:@"check"
@@ -255,7 +255,7 @@
 					 fourthIconName:nil
 						fourthColor:nil
 		 ];
-	} else if ([_dataManager currentState] == 2) { // done
+	} else if ([_dataManager currentState] == DMCurrentStateDone) {
 		[cell setFirstStateIconName:nil
 						 firstColor:nil
 				secondStateIconName:nil
@@ -333,7 +333,7 @@
 	[treillageInbox setSelected:NO];
 	[treillageDone  setSelected:NO];
 	
-	[_dataManager setCurrentState:0];
+	[_dataManager setCurrentState:DMCurrentStateTrash];
 }
 
 
@@ -343,7 +343,7 @@
 	[treillageInbox setSelected:YES];
 	[treillageDone  setSelected:NO];
 	
-	[_dataManager setCurrentState:1];
+	[_dataManager setCurrentState:DMCurrentStateInbox];
 }
 
 
@@ -353,7 +353,7 @@
 	[treillageInbox setSelected:NO];
 	[treillageDone  setSelected:YES];
 	
-	[_dataManager setCurrentState:2];
+	[_dataManager setCurrentState:DMCurrentStateDone];
 }
 
 
