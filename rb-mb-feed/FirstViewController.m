@@ -383,4 +383,16 @@
 }
 
 
+#pragma mark - DM delegate
+
+- (void)didDoneManagingData
+{
+	if ([refreshControl isRefreshing])
+		[refreshControl endRefreshing];
+
+	[self.tableView reloadData];
+
+}
+
+
 @end

@@ -29,7 +29,7 @@
 		currentBox = done;
 	}
 	
-	[[delegate tableView] reloadData];
+	[delegate didDoneManagingData];
 }
 
 
@@ -160,8 +160,7 @@
 			
 			dispatch_async(dispatch_get_main_queue(), ^{
 				
-				[[delegate tableView] reloadData];
-
+				[delegate didDoneManagingData];
 			});
 			
 		} else {
@@ -170,8 +169,7 @@
 		
 		dispatch_async(dispatch_get_main_queue(), ^{
 			
-			if ([[delegate refreshControl] isRefreshing])
-				[[delegate refreshControl] endRefreshing];
+			[delegate didDoneManagingData];
 
 			[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 			
