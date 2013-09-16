@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, DMCurrentState){
 
 @protocol DataManagerDelegate <NSObject>
 
-- (void)didDoneManagingData;
+- (void)didCompleteManagingData;
 
 @end
 

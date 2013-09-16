@@ -29,7 +29,7 @@
 		currentBox = done;
 	}
 	
-	[delegate didDoneManagingData];
+	[delegate didCompleteManagingData];
 }
 
 
@@ -159,8 +159,7 @@
 			}
 			
 			dispatch_async(dispatch_get_main_queue(), ^{
-				
-				[delegate didDoneManagingData];
+				[delegate didCompleteManagingData];
 			});
 			
 		} else {
@@ -169,7 +168,7 @@
 		
 		dispatch_async(dispatch_get_main_queue(), ^{
 			
-			[delegate didDoneManagingData];
+			[delegate didCompleteManagingData];
 
 			[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 			

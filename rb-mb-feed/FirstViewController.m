@@ -383,9 +383,9 @@
 }
 
 
-#pragma mark - DM delegate
+#pragma mark - Data manager delegate
 
-- (void)didDoneManagingData
+- (void)didCompleteManagingData
 {
 	if ([refreshControl isRefreshing])
 		[refreshControl endRefreshing];
